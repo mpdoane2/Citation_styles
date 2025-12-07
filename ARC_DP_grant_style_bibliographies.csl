@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
+  <info>
+    <title>Rob-ARC Title Paren 2022</title>
+    <author>
+      <name>Rob Edwards</name>
+      <email>raedwards@gmail.com</email>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="biology"/>
+    <issn>1097-6256</issn>
+    <eissn>1546-1726</eissn>
+    <updated>2014-06-03T22:15:58+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <macro name="author">
+    <names variable="author">
+      <name sort-separator=", " delimiter=", " and="text" initialize-with="." delimiter-precedes-last="never" name-as-sort-order="all"/>
+    </names>
+  </macro>
+
+  <macro name="access">
+    <choose>
+      <if variable="volume"/>
+      <else-if variable="DOI">
+        <text variable="DOI" prefix="doi:"/>
+      </else-if>
+      <else-if variable="URL">
+        <text term="at"/>
+        <text variable="URL" prefix=" &lt;" suffix="&gt;"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="issuance">
+    <choose>
+      <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+        <group prefix=" (" suffix="). ">
+          <text variable="publisher" suffix=": "/>
+          <text variable="publisher-place" suffix=", "/>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+        </group>
+      </if>
+      <else>
+        <date prefix=" (" suffix="). " variable="issued">
+          <date-part name="year"/>
+        </date>
+      </else>
+    </choose>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout vertical-align="sup" delimiter=",">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="2" et-al-use-first="1">
+    <layout>
+      <text variable="citation-number" suffix=") " prefix="*" font-weight="bold"/>
+      <text macro="author" suffix=" "/>
+      <text macro="issuance"/>
+      <text variable="container-title" font-style="italic" prefix=" " suffix=" " form="short"/>
+      <text variable="volume" suffix=":"/>
+      <text variable="page-first"/>
+      <text macro="access"/>
+    </layout>
+  </bibliography>
+
+</style>
